@@ -30,11 +30,11 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-      $id = request()->route()->parameter('student');
+      //$id = request()->route()->parameter('student');
       $rules =  [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:students,email,'. $id,
+            'email' => 'required|email|unique:students,email,'. $this->student,
             'university_id' => 'required',
             'phone' => 'required|numeric|digits:10',
         ];
