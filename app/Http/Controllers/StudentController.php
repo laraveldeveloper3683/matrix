@@ -19,7 +19,7 @@ class StudentController extends Controller
      {
          $this->middleware('auth');
      }
-     
+
     public function index()
     {
 
@@ -81,7 +81,7 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentRequest $request, $id)
     {
          $student = Student::find($id);
          $student->first_name = $request->first_name;

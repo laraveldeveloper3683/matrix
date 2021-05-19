@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class StudentRequest extends FormRequest
 {
@@ -11,6 +12,12 @@ class StudentRequest extends FormRequest
      *
      * @return bool
      */
+    //  private $id;
+    //
+    //  public function __construct($id)
+    // {
+    //     $this->id = $id;
+    // }
     public function authorize()
     {
         return true;
@@ -23,10 +30,11 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
+      $id = request()->route()->parameter('student');
       $rules =  [
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email|unique:students',
+            'email' => 'required|email|unique:students,email,'. $id,
             'university_id' => 'required',
             'phone' => 'required|numeric|digits:10',
         ];
